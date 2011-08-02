@@ -14,7 +14,7 @@
    id="svg2985"
    version="1.1"
    inkscape:version="0.48.1 r9760"
-   sodipodi:docname="tic-tac-toe-board.svg">
+   sodipodi:docname="tic-tac-toe-board2.svg">
   <defs
      id="defs2987" />
   <sodipodi:namedview
@@ -57,8 +57,8 @@
        id="rect2993"
        width="417.4834"
        height="397.78253"
-       x="110.7466"
-       y="35.552868" />
+       x="106.9212"
+       y="34.27774" />
     <rect
        style="fill:#000000"
        id="rect3779"
@@ -71,90 +71,107 @@
        id="rect3779-3"
        width="3.825387"
        height="335.35898"
-       x="374.2504"
-       y="63.6703" />
+       x="369.14993"
+       y="64.945427" />
     <rect
        style="fill:#000000"
        id="rect3806"
-       width="340.4595"
+       width="336.63412"
        height="5.1005173"
-       x="149.19012"
-       y="173.96895" />
+       x="145.36473"
+       y="172.69382" />
     <rect
        style="fill:#000000"
        id="rect3806-4"
        width="335.35898"
        height="5.1005173"
-       x="151.10283"
-       y="292.556" />
+       x="146.0023"
+       y="287.45554" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043"
-       width="100.73521"
-       height="107.11086"
-       x="151.74039"
-       y="182.89488" />
+       id="4"
+       width="107"
+       height="107"
+       x="145.36476"
+       y="179.1803"
+       inkscape:label="#rect3043" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-9"
-       width="108.38598"
-       height="107.11086"
-       x="379.35095"
-       y="181.61977" />
+       id="6"
+       width="107"
+       height="107"
+       x="374.25049"
+       y="179.18037"
+       inkscape:label="#rect3043-9" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-3"
-       width="107.11086"
-       height="107.11086"
-       x="263.31421"
-       y="180.34464" />
+       id="5"
+       width="107"
+       height="107"
+       x="260.76404"
+       y="179.18031"
+       inkscape:label="#rect3043-3" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-3-8"
-       width="107.11086"
-       height="107.11086"
-       x="261.40149"
-       y="64.307861" />
+       id="2"
+       width="107"
+       height="107"
+       x="260.12637"
+       y="64.418724"
+       inkscape:label="#rect3043-3-8" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-3-8-8"
-       width="107.11086"
-       height="99.460091"
-       x="261.40149"
-       y="298.93164"
-       inkscape:transform-center-x="73.957498"
-       inkscape:transform-center-y="49.730045" />
+       id="8"
+       width="107"
+       height="107"
+       x="260.1264"
+       y="293.94211"
+       inkscape:transform-center-x="73.88095"
+       inkscape:transform-center-y="53.499992"
+       inkscape:label="#rect3043-3-8-8" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-3-8-8-5"
-       width="107.11086"
-       height="104.56061"
-       x="381.26367"
-       y="64.307861"
-       inkscape:transform-center-x="73.957498"
-       inkscape:transform-center-y="52.280303" />
+       id="3"
+       width="107"
+       height="107"
+       x="374.88809"
+       y="64.418724"
+       inkscape:transform-center-x="73.88095"
+       inkscape:transform-center-y="53.499999"
+       inkscape:label="#rect3043-3-8-8-5" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-3-8-8-5-0"
-       width="102.01035"
-       height="95.634705"
-       x="381.26364"
-       y="300.20676"
-       inkscape:transform-center-x="70.435709"
-       inkscape:transform-center-y="47.817351" />
+       id="9"
+       width="107"
+       height="107"
+       x="374.88815"
+       y="293.94214"
+       inkscape:transform-center-x="73.880941"
+       inkscape:transform-center-y="53.499999"
+       inkscape:label="#rect3043-3-8-8-5-0" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-96"
-       width="100.73521"
-       height="107.11086"
-       x="151.10281"
-       y="63.032734" />
+       id="1"
+       width="107"
+       height="107"
+       x="146.0023"
+       y="64.418724"
+       inkscape:label="#1" />
+    <rect
+       style="fill:#dcdc00"
+       id="1-circle"
+       width="107"
+       height="107"
+       x="146.0023"
+       y="64.418724"
+       inkscape:label="#1-circle" />
     <rect
        style="fill:#dcdcdc"
-       id="rect3043-96-3"
-       width="100.73521"
-       height="95.634697"
-       x="151.10281"
-       y="300.20676" />
+       id="7"
+       width="107"
+       height="107"
+       x="146.0023"
+       y="293.94214"
+       inkscape:label="#rect3043-96-3" />
   </g>
 </svg>
