@@ -12,9 +12,9 @@
 MyApp = {
     xmppDomain: 'proto.encorelab.org',
     groupchatRoom: 's3@conference.proto.encorelab.org',
-    rollcallURL: 'http://rollcall.proto.encorelab.org',
+    //rollcallURL: 'http://rollcall.proto.encorelab.org',
     //rollcallURL: 'http://localhost:3000',
-    //rollcallURL: 'http://localhost:8000/rollcall',
+    rollcallURL: 'http://localhost:8000/rollcall',
     
     // this is called in index.html
     init: function() {
