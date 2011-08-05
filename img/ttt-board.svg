@@ -1,40 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>Sail!</title> 
-  
-    <link href="css/ticTacToe.css" rel="stylesheet" type="text/css" /> 
-    <link href="js/sail.js/css/jquery-ui/start/jquery-ui.css" rel="stylesheet" type="text/css" /> 
-      
-    <link href="js/sail.js/css/sail.css" rel="stylesheet" type="text/css" />
-    
-    <script src="js/sail.js/sail.js" type="text/javascript"></script>
-    
-    <script type="text/javascript">
-        Sail.load()
-            .then('js/sail.js/rollcall.js')
-            .then('js/ticTacToe.js')
-            .thenRun(function() { return Sail.init(ticTacToe) })
-    </script>
-
-</head>
-<body>
-    <header>
-        <h1>Hello World!</h1>
-    </header>
-    
-    <div id="connecting">
-        <img src="loader.gif" />
-        <p>Connecting...</p>
-    </div>
-    
-    <!-- note that "display: none" means that this is initially hidden -->
-    <div class="widget-box" style="display: none" id="hello-world">
-        Hello world
-    </div>
-    
-<div class-"widget-box" style="display: none" id="board">
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -84,7 +50,7 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1" >
+     id="layer1">
     <rect
        style="fill:#999999;fill-rule:evenodd;stroke:#000000;stroke-width:0.80208552px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="rect2997"
@@ -136,7 +102,7 @@
          sodipodi:role="line"
          id="tspan2995"
          x="237.29971"
-         y="549.82062">X</tspan>
+         y="549.82062">X</tspan></text>
     <text
        transform="scale(1.1569829,0.864317)"
        sodipodi:linespacing="125%"
@@ -360,13 +326,3 @@
          y="378.6666">O</tspan></text>
   </g>
 </svg>
-    </div>
-
-
-<!--      	<embed src="/img/ttt-board.svg" type="image/svg+xml">-->
-
-    <footer> 
-    </footer> 
-      
-</body>
-</html>

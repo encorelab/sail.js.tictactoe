@@ -9,12 +9,12 @@
         to your app's actual name! (preferrably camel-cased)
 */
 
-MyApp = {
+ticTacToe = {
     xmppDomain: 'proto.encorelab.org',
     groupchatRoom: 's3@conference.proto.encorelab.org',
-    rollcallURL: 'http://rollcall.proto.encorelab.org',
+    //rollcallURL: 'http://rollcall.proto.encorelab.org',
     //rollcallURL: 'http://localhost:3000',
-    //rollcallURL: 'http://localhost:8000/rollcall',
+    rollcallURL: 'http://localhost:8000/rollcall',
     
     // this is called in index.html
     init: function() {
@@ -26,7 +26,7 @@ MyApp = {
             .load('Strophe.AutoConnector')
             .thenRun(function () {
                 // takes care of event-binding magic... don't touch this
-                Sail.autobindEvents(MyApp)
+                Sail.autobindEvents(ticTacToe)
                 
                 console.log("Initialized.")
                 $(Sail.app).trigger('initialized')
@@ -40,15 +40,15 @@ MyApp = {
         // Note that we use Rollcall for authentication here.
         // See: https://github.com/educoder/rollcall
         
-        MyApp.rollcall = new Rollcall.Client(MyApp.rollcallURL)
-        MyApp.token = MyApp.rollcall.getCurrentToken()
+        ticTacToe.rollcall = new Rollcall.Client(ticTacToe.rollcallURL)
+        ticTacToe.token = ticTacToe.rollcall.getCurrentToken()
         
-        if (!MyApp.token) {
+        if (!ticTacToe.token) {
             Rollcall.Authenticator.requestLogin()
         } else {
-            MyApp.rollcall.fetchSessionForToken(MyApp.token, function(data) {
-                MyApp.session = data.session
-                $(MyApp).trigger('authenticated')
+            ticTacToe.rollcall.fetchSessionForToken(ticTacToe.token, function(data) {
+                ticTacToe.session = data.session
+                $(ticTacToe).trigger('authenticated')
             })
         }
     },
@@ -64,11 +64,17 @@ MyApp = {
             // this intercepts an event in XMPP groupchat that looks like this:
             //
             //   {"eventType":"here","payload":{"who":"test1"}}
+//            here: function(sev) {
+//                payload = sev.payload
+//                
+//                $('#welcome').text("Welcome "+payload.who+"!")
+//                    .show('drop', {duration: 'slow', direction: 'up'})
+//            },
             here: function(sev) {
                 payload = sev.payload
                 
-                $('#welcome').text("Welcome "+payload.who+"!")
-                    .show('drop', {duration: 'slow', direction: 'up'})
+                $('#board').show()
+                
             },
             
             // this would intercept an event in XMPP groupchat that looks like this:
@@ -78,7 +84,21 @@ MyApp = {
             // or just:
             //
             //   {"eventType":"my_event"}
-            my_event: function(ev, sev) {
+            //   {"eventType":"showPiece","payload":{"piece":"x5"}}
+            //GET MATT TO EXPLAIN WHY ITS EV NAD NOT SEV HERE
+
+            hidePiece: function(ev, sev) {
+            	tile = ev.payload.piece
+            	tile = '#' + tile
+            	$(tile).hide()
+            },
+            showPiece: function(ev, sev) {
+            	tile = ev.payload.piece
+            	tile = '#' + tile
+            	$(tile).show()
+            },
+            hidex5: function(ev, sev) {
+            	$('#x5').hide()
             },
             
             // another way to respond to sail events it to map them onto local events.
@@ -97,7 +117,7 @@ MyApp = {
         */
         
         initialized: function(ev) {
-            MyApp.authenticate()
+            ticTacToe.authenticate()
         },
         
         // this is triggered by $(MyApp).trigger('connected')
@@ -107,18 +127,32 @@ MyApp = {
       	    Sail.app.groupchat.join()
             
             $('#username').text(session.account.login)
-      	    $('#connecting').hide()
+      	    $('#connecting').hide()						//what's the correct way to do this initial hiding? Set as hidden in the html, I assume
+      	    for (i=1; i < 10; i++) {
+      	    	xInit = '#x' + i
+      	    	$(xInit).hide()
+      	    	$(xInit).click(function() {
+      	    	    $(this).toggle();
+      	    	});
+      	    	oInit = '#o' + i
+      	    	$(oInit).hide()
+      	    	$(oInit).click(function() {
+      	    	    $(this).toggle();
+      	    	});
+      	    }
             
-            $('#hello-world').show('drop', {duration: 'slow', direction: 'up'})
+
+      	    
         },
+        
         
         // this is triggered by $(MyApp).trigger('selfJoined')
         // in sail.js after the user joins the groupchat (after 'connected')
         selfJoined: function(ev) {
             // example of how to trigger a sail event
             // note that this will be handled by event.sail.here (further up in this file)
-            sev = new Sail.Event('here', {who: MyApp.session.account.login})
-            MyApp.groupchat.sendEvent(sev)
+            sev = new Sail.Event('here', {who: ticTacToe.session.account.login})
+            ticTacToe.groupchat.sendEvent(sev)
         },
         
         
@@ -126,7 +160,7 @@ MyApp = {
         anotherLocalEvent: function(ev) {
             
         },
-        
+
         // sail event mapped to local event -- see the explenation above for "foo: 'foobar'".
         // `ev` is a standard javascript event object (for the most part you can probably just
         // ignore this, as it doesn't contain much useful data); `sev` is the sail event object,
@@ -138,6 +172,6 @@ MyApp = {
         // triggered in MyApp.unauthenticate once the user has been unauthenticated
         unauthenticated: function(ev) {
             document.location.reload()
-        }
+        },
     }
 }
