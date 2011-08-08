@@ -8,6 +8,8 @@
     --> change all occurances of "MyApp" in this file
         to your app's actual name! (preferrably camel-cased)
 */
+var pieceSelection = ''
+var boardArray = new Array()
 
 ticTacToe = {
     xmppDomain: 'proto.encorelab.org',
@@ -73,8 +75,7 @@ ticTacToe = {
             here: function(sev) {
                 payload = sev.payload
                 
-                $('#board').show()
-                
+
             },
             
             // this would intercept an event in XMPP groupchat that looks like this:
@@ -96,10 +97,19 @@ ticTacToe = {
             	tile = ev.payload.piece
             	tile = '#' + tile
             	$(tile).show()
+            	tileToRemove = '#rect' + tile.charAt(2)
+            	$(tileToRemove).remove()
+            	
+            	if (tile.charAt(1) == 'x') {
+            		boardArray[(tile.charAt(2)-1)] = 1
+            	}
+            	else {
+            		boardArray[(tile.charAt(2)-1)] = -1
+            	}
+            	
+            	$(ticTacToe).trigger('checkWin')
             },
-            hidex5: function(ev, sev) {
-            	$('#x5').hide()
-            },
+
             
             // another way to respond to sail events it to map them onto local events.
             // the following code would cause the 'foo' sail event to trigger the local
@@ -127,22 +137,111 @@ ticTacToe = {
       	    Sail.app.groupchat.join()
             
             $('#username').text(session.account.login)
-      	    $('#connecting').hide()						//what's the correct way to do this initial hiding? Set as hidden in the html, I assume
-      	    for (i=1; i < 10; i++) {
-      	    	xInit = '#x' + i
-      	    	$(xInit).hide()
-      	    	$(xInit).click(function() {
-      	    	    $(this).toggle();
-      	    	});
-      	    	oInit = '#o' + i
-      	    	$(oInit).hide()
-      	    	$(oInit).click(function() {
-      	    	    $(this).toggle();
-      	    	});
-      	    }
-            
+      	    $('#connecting').hide()						
 
-      	    
+            $('#choose-piece').show()
+
+            $('#xSelection').click(function() {
+  	    	    pieceSelection = 'x'
+  	    	    $(ticTacToe).trigger('sideSelected')
+  	    	});
+            $('#oSelection').click(function() {
+  	    	    pieceSelection = 'o'
+  	    	    $(ticTacToe).trigger('sideSelected')
+  	    	});   	    
+        },
+        
+        sideSelected: function() {
+	    	$('#choose-piece').hide()
+  	    	$('#board').show()
+  	        for (i=1; i < 10; i++) {
+  	      	 	xInit = '#x' + i
+  	      	   	$(xInit).hide()
+  	      	   	oInit = '#o' + i
+  	      	   	$(oInit).hide()
+//	  	    	    	tInit = '#rect' + i
+//	  	      	    	pInit = 'x' + i
+//	  	      	    	$(tInit).click(function() {
+//	  	      	    		sev = new Sail.Event('showPiece', {piece: pInit})
+//	  	      	    		ticTacToe.groupchat.sendEvent(sev)
+//	  	      	    	});
+	  	    }
+	    	    //why can't this be looped? Only tile 9 gets initiated in the above loop. Best if I call a func. from each and then loop?
+  	    	$('#rect1').click(function() {
+  	    			piece = pieceSelection + '1'
+	      	    	sev = new Sail.Event('showPiece', {piece: piece})
+	      	    	ticTacToe.groupchat.sendEvent(sev)
+	      	});
+  	    	$('#rect2').click(function() {
+  	    			piece = pieceSelection + '2'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect3').click(function() {
+  	    			piece = pieceSelection + '3'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect4').click(function() {
+  	    			piece = pieceSelection + '4'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect5').click(function() {
+  	    			piece = pieceSelection + '5'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect6').click(function() {
+  	    			piece = pieceSelection + '6'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect7').click(function() {
+  	    			piece = pieceSelection + '7'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect8').click(function() {
+  	    			piece = pieceSelection + '8'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  	    	$('#rect9').click(function() {
+  	    			piece = pieceSelection + '9'
+      	    		sev = new Sail.Event('showPiece', {piece: piece})
+      	    		ticTacToe.groupchat.sendEvent(sev)
+      	    });
+  			
+        },
+        
+        checkWin: function() {
+        	//UUUUGGGGGLLLLLYYYYY
+        	if (Math.abs(boardArray[0] + boardArray[1] + boardArray[2]) == 3) {
+        			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[3] + boardArray[4] + boardArray[5]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[6] + boardArray[7] + boardArray[8]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[0] + boardArray[3] + boardArray[6]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[1] + boardArray[4] + boardArray[7]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[2] + boardArray[5] + boardArray[8]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[0] + boardArray[4] + boardArray[8]) == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+        	else if (Math.abs(boardArray[2] + boardArray[4] + boardArray[6])  == 3) {
+    			alert(pieceSelection + " wins")
+        	}
+
         },
         
         
